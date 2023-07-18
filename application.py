@@ -1,7 +1,8 @@
 import fastapi
-import uvicorn
 import loguru
+import uvicorn
 
+from app.routes.company import company_router
 from app.routes.healthcheck import ping_router
 from utils.logger import setup_logging
 
@@ -18,6 +19,7 @@ def build_app(logger) -> fastapi.FastAPI:
     )
 
     app.include_router(ping_router)
+    app.include_router(company_router)
 
     return app
 
