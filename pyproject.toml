@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "payments"
+version = "0.1.0"
+description = ""
+authors = ["Anna Kartasheva <annakartashevamail@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^1.10.7"
+fastapi = "^0.100.0"
+loguru = "^0.7.0"
+uvicorn = "^0.23.1"
+black = "^23.7.0"
+isort = "^5.12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
