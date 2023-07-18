@@ -1,6 +1,8 @@
 import fastapi
 import uvicorn
 import loguru
+
+from app.routes.healthcheck import ping_router
 from utils.logger import setup_logging
 
 
@@ -14,6 +16,8 @@ def build_app(logger) -> fastapi.FastAPI:
         redoc_url="/api/v1/redoc",
         logger=logger,
     )
+
+    app.include_router(ping_router)
 
     return app
 
