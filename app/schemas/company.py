@@ -1,6 +1,6 @@
 import uuid
 
-from pydantic import BaseModel, Field, ValidationError, constr, validator
+from pydantic import BaseModel, Field, ValidationError, constr, validator, root_validator
 from pydantic.networks import AnyUrl, EmailStr
 
 from app.enums import CompanyStatus
@@ -25,11 +25,17 @@ class CompanySchema(BaseModel):
     is_sanctioned: bool | None
     site_url: AnyUrl | None
 
+    @validator("*", pre=True)
+    def empty_str_to_none(cls, v):
+        if v == "":
+            return None
+        return v
+
     @validator("phone_number")
     def prettify_phone_number(cls, v):
         if not v:
             return None
-        v = (v.translate({ord(i): None for i in '+ ()-'}))
-        if not v.isdigit():
+        res = (v.translate({ord(i): None for i in '+ ()-'}))
+        if not res.isdigit():
             raise ValidationError('Phone number must not contain letters')
-        return v
+        return res

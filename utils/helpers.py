@@ -16,6 +16,10 @@ def get_okved(activity_code):
     return OKVED(code=activity_code, description=OKVED_codes_and_descriptions[activity_code])
 
 
+def get_company_status(status_name):
+    return CompanyStatus(status_name)
+
+
 def get_fake_company():
     fake = Faker(locale='ru_RU')
     mock_data = {

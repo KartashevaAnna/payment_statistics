@@ -4,6 +4,8 @@ import uvicorn
 
 from app.routes.company import company_router
 from app.routes.healthcheck import ping_router
+from app.schemas.mock import Mock
+from utils.helpers import get_fake_company
 from utils.logger import setup_logging
 
 
@@ -20,6 +22,8 @@ def build_app(logger) -> fastapi.FastAPI:
 
     app.include_router(ping_router)
     app.include_router(company_router)
+
+    app.state.mock: Mock = Mock(companies=[get_fake_company() for _ in range(10)])
 
     return app
 
