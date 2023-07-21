@@ -14,8 +14,16 @@ black = "^23.7.0"
 isort = "^5.12.0"
 faker = "^19.1.0"
 pydantic = "^1.10"
+tortoise-orm = {extras = ["asyncpg"], version = "^0.19.3"}
+asyncpg = "^0.28.0"
+aerich = "^0.7.2"
 
 
+
+[tool.aerich]
+tortoise_orm = "app.db_config.db_config"
+location = "./migrations"
+src_folder = "./."
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

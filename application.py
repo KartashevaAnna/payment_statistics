@@ -2,11 +2,13 @@ import fastapi
 import loguru
 import uvicorn
 
+from app.db_config import db_config
 from app.routes.company import company_router
 from app.routes.healthcheck import ping_router
 from app.schemas.mock import Mock
 from utils.helpers import get_fake_company
 from utils.logger import setup_logging
+from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
 
 def build_app(logger) -> fastapi.FastAPI:
@@ -24,6 +26,14 @@ def build_app(logger) -> fastapi.FastAPI:
     app.include_router(company_router)
 
     app.state.mock: Mock = Mock(companies=[get_fake_company() for _ in range(10)])
+
+    register_tortoise(
+        app,
+        config=db_config, config_file=None,
+        modules={"models": ["models", "aerich.models"]},
+        generate_schemas=True,
+        add_exception_handlers=True,
+    )
 
     return app
 

@@ -17,10 +17,10 @@ def get_company() -> CompanySchema:
     return get_fake_company()
 
 
-@company_router.post("/company", summary='Create a company')
+@company_router.post("/company", summary='Create a company', status_code=201)
 def get_company(body: CompanySchema = Body(), ) -> Response:
     print(body)
-    return 'OK'
+    return
 
 
 @company_router.get("/companies", summary="Show all companies")
