@@ -44,5 +44,5 @@ def delete_company(company_id: uuid.UUID) -> str:
 
 
 @company_router.post("/company/{company_id}/edit-status", summary='Edit company status', status_code=200)
-def delete_company(company_id: uuid.UUID, body: CompanyStatus = Body(),) -> str:
+def delete_company(company_id: uuid.UUID, body: CompanyStatus = Body(), ) -> str:
     return f'Company status with id {company_id} is set to {body.name}.'
