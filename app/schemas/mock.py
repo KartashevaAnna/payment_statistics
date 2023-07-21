@@ -1,8 +1,9 @@
-from pydantic import BaseModel
 from typing import List
 
-from app.schemas.company import CompanySchema
+from pydantic import BaseModel
+
+from app.schemas.company import CompanyUpdateSchema
 
 
 class Mock(BaseModel):
-    companies: List[CompanySchema]
+    companies: List[CompanyUpdateSchema]

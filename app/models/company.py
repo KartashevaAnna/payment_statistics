@@ -1,5 +1,4 @@
 from tortoise import fields, models
-from tortoise.contrib.pydantic import pydantic_model_creator
 
 from app.enums import CompanyStatus
 
@@ -17,6 +16,11 @@ class Company(models.Model):
     status = fields.CharEnumField(enum_type=CompanyStatus)
     is_sanctioned = fields.BooleanField(null=True)
     site_url = fields.CharField(max_length=256, null=True)
+
+    class Meta:
+        table = "company"
+        db_schema = "payment_statistics"
+        app = 'payment_statistics'
 
 
 __models__ = [Company]

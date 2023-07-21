@@ -4,7 +4,7 @@ import uuid
 from faker import Faker
 
 from app.enums import CompanyStatus
-from app.schemas.company import OKVED, CompanySchema
+from app.schemas.company import OKVED, CompanyUpdateSchema, CompanyCreateSchema, CompanyFakeSchema
 from utils.OKVED_codes_and_descriptions import OKVED_codes_and_descriptions
 
 
@@ -28,7 +28,7 @@ def get_fake_company():
         'name': fake.name(),
         'inn': fake.individuals_inn(),
         'current_account': fake.checking_account(),
-        'activity': get_okved(random.randint(1, len(OKVED_codes_and_descriptions))),
+        'activity': str(random.randint(1, len(OKVED_codes_and_descriptions))),
         'logo_url': fake.image_url(),
         'email': fake.safe_email(),
         'phone_number': fake.phone_number(),
@@ -36,4 +36,4 @@ def get_fake_company():
         'is_sanctioned': random.choice([True, False]),
         'site_url': fake.url(),
     }
-    return CompanySchema(**mock_data)
+    return CompanyFakeSchema(**mock_data)

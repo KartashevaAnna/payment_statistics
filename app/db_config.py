@@ -14,8 +14,8 @@ db_config = {
 
     },
     'apps': {
-        'models': {
-            'models': ['app.models.company', "aerich.models"],
+        'payment_statistics': {
+            'models': ['app.models.company', 'app.models.user'],
             # If no default_connection specified, defaults to 'default'
             'default_connection': 'payment_statistics',
         }
